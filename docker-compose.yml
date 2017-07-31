@@ -1,0 +1,18 @@
+version: '2'
+services:
+  vanilla:
+    build: vanilla/
+    container_name: vanilla
+    volumes:
+      - ./docker/top-output.txt:/top-output.txt
+  vanilla-handler:
+    build: vanilla-handler/
+    container_name: vanilla-handler
+    volumes:
+      - ./docker/top-output.txt:/top-output.txt
+  docker:
+    build: docker/
+    container_name: docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./docker/top-output.txt:/top-output.txt
