@@ -16,3 +16,22 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./docker/top-output.txt:/top-output.txt
+  modified-agent:
+    build: agent/
+    container_name: modified-agent
+    environment:
+      - APIKEY=<api-key>
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  agent:
+    image: netuitive/docker-agent
+    container_name: agent
+    environment:
+      - APIKEY=<api-key>
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  docker-generator:
+    build: docker-generator/
+    container_name: generator
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
