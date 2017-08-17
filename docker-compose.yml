@@ -23,6 +23,13 @@ services:
       - APIKEY=<api-key>
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+  agent-rc:
+    build: agent-rc/
+    container_name: agent-rc
+    environment:
+      - APIKEY=<api-key>
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
   agent:
     image: netuitive/docker-agent
     container_name: agent
